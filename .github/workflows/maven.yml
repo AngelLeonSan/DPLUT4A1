@@ -9,6 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: P@ssw0rd
+          MYSQL_DATABASE: UT4A1
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -pP@ssw0rd"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
     steps:
       - name: 1. Descargar el código del repositorio
         uses: actions/checkout@v5
@@ -20,6 +32,10 @@ jobs:
           distribution: 'temurin'
 
       - name: 3. Ejecutar tests con Maven Wrapper
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/UT4A1?serverTimezone=UTC
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: P@ssw0rd
         run: |
           chmod +x mvnw
           ./mvnw test
