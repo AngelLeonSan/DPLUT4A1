@@ -28,7 +28,7 @@ public class VehiculoServicesTest {
     @BeforeEach
     void setUp() {
         vehiculo = new Vehiculo();
-        vehiculo.setId(1);
+        vehiculo.setId(1L);
         vehiculo.setMarca("Seat");
         vehiculo.setModelo("Leon");
         vehiculo.setMatriculacion(2021);
