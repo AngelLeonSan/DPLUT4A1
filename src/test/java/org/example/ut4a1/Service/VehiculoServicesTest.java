@@ -29,7 +29,7 @@ public class VehiculoServicesTest {
     void setUp() {
         vehiculo = new Vehiculo();
         vehiculo.setId(1L);
-        vehiculo.setMarca("Seat");
+        vehiculo.setMarca("Renault");
         vehiculo.setModelo("Leon");
         vehiculo.setMatriculacion(2021);
         vehiculo.setPrecio(18000);
