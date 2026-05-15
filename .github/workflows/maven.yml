@@ -1,0 +1,25 @@
+name: Integración Continua Java
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+    steps:
+      - name: 1. Descargar el código del repositorio
+        uses: actions/checkout@v5
+
+      - name: 2. Configurar el entorno de Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: 3. Ejecutar tests con Maven Wrapper
+        run: |
+          chmod +x mvnw
+          ./mvnw test
